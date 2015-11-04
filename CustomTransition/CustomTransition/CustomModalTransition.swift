@@ -14,7 +14,7 @@ class CustomModalTransition: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? FirstViewController else {
+        guard let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? UITabBarController else {
             return
         }
         guard let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? SecondViewController else {

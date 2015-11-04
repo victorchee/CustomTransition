@@ -17,7 +17,7 @@ class CustomDismissTransition: NSObject, UIViewControllerAnimatedTransitioning {
         guard let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? SecondViewController else {
             return
         }
-        guard let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? FirstViewController else {
+        guard let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? UITabBarController else {
             return
         }
         guard let containerView = transitionContext.containerView() else {
