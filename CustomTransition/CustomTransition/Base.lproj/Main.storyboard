@@ -93,16 +93,26 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="sE5-9z-IkI" firstAttribute="centerX" secondItem="Ier-KR-qOE" secondAttribute="centerX" id="3Ei-6G-uR5"/>
                             <constraint firstItem="sE5-9z-IkI" firstAttribute="centerY" secondItem="Ier-KR-qOE" secondAttribute="centerY" id="VDS-m6-xWe"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Oh0-dN-zej" appends="YES" id="hfq-nh-QaJ"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="label" destination="sE5-9z-IkI" id="eaj-gX-JIM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xdt-N1-BgG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="Oh0-dN-zej">
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="edgePan:" destination="D2r-Io-o7O" id="INA-Lt-h8L"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1853" y="381"/>
         </scene>

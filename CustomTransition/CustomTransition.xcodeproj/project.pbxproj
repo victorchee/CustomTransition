@@ -14,6 +14,7 @@
 		BBF7CB8B1BE9D66D006E312F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB8A1BE9D66D006E312F /* CollectionViewController.swift */; };
 		BBF7CB8D1BE9D687006E312F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB8C1BE9D687006E312F /* DetailViewController.swift */; };
 		BBF7CB8F1BE9D8AE006E312F /* CustomPushTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB8E1BE9D8AE006E312F /* CustomPushTransition.swift */; };
+		BBF7CB911BE9EA39006E312F /* CustomPopTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB901BE9EA39006E312F /* CustomPopTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		BBF7CB8A1BE9D66D006E312F /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		BBF7CB8C1BE9D687006E312F /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BBF7CB8E1BE9D8AE006E312F /* CustomPushTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPushTransition.swift; sourceTree = "<group>"; };
+		BBF7CB901BE9EA39006E312F /* CustomPopTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPopTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				BBF7CB8A1BE9D66D006E312F /* CollectionViewController.swift */,
 				BBF7CB8C1BE9D687006E312F /* DetailViewController.swift */,
 				BBF7CB8E1BE9D8AE006E312F /* CustomPushTransition.swift */,
+				BBF7CB901BE9EA39006E312F /* CustomPopTransition.swift */,
 				BBF7CB7C1BE9AAD9006E312F /* Main.storyboard */,
 				BBF7CB7F1BE9AAD9006E312F /* Assets.xcassets */,
 				BBF7CB811BE9AAD9006E312F /* LaunchScreen.storyboard */,
@@ -143,6 +146,7 @@
 			files = (
 				BBF7CB8D1BE9D687006E312F /* DetailViewController.swift in Sources */,
 				BBF7CB8B1BE9D66D006E312F /* CollectionViewController.swift in Sources */,
+				BBF7CB911BE9EA39006E312F /* CustomPopTransition.swift in Sources */,
 				BBF7CB791BE9AAD9006E312F /* AppDelegate.swift in Sources */,
 				BBF7CB8F1BE9D8AE006E312F /* CustomPushTransition.swift in Sources */,
 			);

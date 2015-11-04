@@ -25,10 +25,7 @@ class CustomPushTransition: NSObject, UIViewControllerAnimatedTransitioning {
             return
         }
         
-        guard let selectedIndexPath = fromViewController.collectionView?.indexPathsForSelectedItems()?.first else {
-            return
-        }
-        guard let selectedCell = fromViewController.collectionView?.cellForItemAtIndexPath(selectedIndexPath) as? CollectionViewCell else {
+        guard let selectedCell = fromViewController.selectedCell else {
             return
         }
         let snapshotView = selectedCell.label.snapshotViewAfterScreenUpdates(false)
@@ -42,8 +39,9 @@ class CustomPushTransition: NSObject, UIViewControllerAnimatedTransitioning {
         containerView.addSubview(toViewController.view)
         containerView.addSubview(snapshotView)
         
+        toViewController.label.layoutIfNeeded() // 保证label的frame已经更新
         UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
-            snapshotView.center = toViewController.view.center
+            snapshotView.center = toViewController.label.center
             toViewController.view.alpha = 1.0
             }) { (finished) -> Void in
                 selectedCell.label.hidden = false

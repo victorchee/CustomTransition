@@ -11,6 +11,14 @@ import UIKit
 class CollectionViewController: UICollectionViewController {
     let data = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
+    var selectedCell: CollectionViewCell?
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let selectedIndexPath = collectionView?.indexPathsForSelectedItems()?.first {
+            selectedCell = collectionView?.cellForItemAtIndexPath(selectedIndexPath) as? CollectionViewCell
+        }
+    }
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
