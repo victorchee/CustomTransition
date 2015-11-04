@@ -15,6 +15,10 @@
 		BBF7CB8D1BE9D687006E312F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB8C1BE9D687006E312F /* DetailViewController.swift */; };
 		BBF7CB8F1BE9D8AE006E312F /* CustomPushTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB8E1BE9D8AE006E312F /* CustomPushTransition.swift */; };
 		BBF7CB911BE9EA39006E312F /* CustomPopTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB901BE9EA39006E312F /* CustomPopTransition.swift */; };
+		BBF7CB951BE9F1EE006E312F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB941BE9F1EE006E312F /* FirstViewController.swift */; };
+		BBF7CB971BE9F1FA006E312F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB961BE9F1FA006E312F /* SecondViewController.swift */; };
+		BBF7CB991BE9F47A006E312F /* CustomModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB981BE9F47A006E312F /* CustomModalTransition.swift */; };
+		BBF7CB9B1BE9F7F8006E312F /* CustomDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB9A1BE9F7F8006E312F /* CustomDismissTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		BBF7CB8C1BE9D687006E312F /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BBF7CB8E1BE9D8AE006E312F /* CustomPushTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPushTransition.swift; sourceTree = "<group>"; };
 		BBF7CB901BE9EA39006E312F /* CustomPopTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPopTransition.swift; sourceTree = "<group>"; };
+		BBF7CB941BE9F1EE006E312F /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		BBF7CB961BE9F1FA006E312F /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		BBF7CB981BE9F47A006E312F /* CustomModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomModalTransition.swift; sourceTree = "<group>"; };
+		BBF7CB9A1BE9F7F8006E312F /* CustomDismissTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDismissTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,16 +69,36 @@
 			isa = PBXGroup;
 			children = (
 				BBF7CB781BE9AAD9006E312F /* AppDelegate.swift */,
-				BBF7CB8A1BE9D66D006E312F /* CollectionViewController.swift */,
-				BBF7CB8C1BE9D687006E312F /* DetailViewController.swift */,
-				BBF7CB8E1BE9D8AE006E312F /* CustomPushTransition.swift */,
-				BBF7CB901BE9EA39006E312F /* CustomPopTransition.swift */,
+				BBF7CB921BE9F1C4006E312F /* Navigation */,
+				BBF7CB931BE9F1D0006E312F /* Modal */,
 				BBF7CB7C1BE9AAD9006E312F /* Main.storyboard */,
 				BBF7CB7F1BE9AAD9006E312F /* Assets.xcassets */,
 				BBF7CB811BE9AAD9006E312F /* LaunchScreen.storyboard */,
 				BBF7CB841BE9AAD9006E312F /* Info.plist */,
 			);
 			path = CustomTransition;
+			sourceTree = "<group>";
+		};
+		BBF7CB921BE9F1C4006E312F /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				BBF7CB8A1BE9D66D006E312F /* CollectionViewController.swift */,
+				BBF7CB8C1BE9D687006E312F /* DetailViewController.swift */,
+				BBF7CB8E1BE9D8AE006E312F /* CustomPushTransition.swift */,
+				BBF7CB901BE9EA39006E312F /* CustomPopTransition.swift */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
+		BBF7CB931BE9F1D0006E312F /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				BBF7CB941BE9F1EE006E312F /* FirstViewController.swift */,
+				BBF7CB961BE9F1FA006E312F /* SecondViewController.swift */,
+				BBF7CB981BE9F47A006E312F /* CustomModalTransition.swift */,
+				BBF7CB9A1BE9F7F8006E312F /* CustomDismissTransition.swift */,
+			);
+			name = Modal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,9 +172,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBF7CB9B1BE9F7F8006E312F /* CustomDismissTransition.swift in Sources */,
 				BBF7CB8D1BE9D687006E312F /* DetailViewController.swift in Sources */,
+				BBF7CB991BE9F47A006E312F /* CustomModalTransition.swift in Sources */,
 				BBF7CB8B1BE9D66D006E312F /* CollectionViewController.swift in Sources */,
 				BBF7CB911BE9EA39006E312F /* CustomPopTransition.swift in Sources */,
+				BBF7CB951BE9F1EE006E312F /* FirstViewController.swift in Sources */,
+				BBF7CB971BE9F1FA006E312F /* SecondViewController.swift in Sources */,
 				BBF7CB791BE9AAD9006E312F /* AppDelegate.swift in Sources */,
 				BBF7CB8F1BE9D8AE006E312F /* CustomPushTransition.swift in Sources */,
 			);
