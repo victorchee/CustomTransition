@@ -12,17 +12,12 @@ class CustomUnwindSegue: UIStoryboardSegue {
     override func perform() {
         let sourceView = sourceViewController.view
         let destinationView = destinationViewController.view
+        sourceView.superview?.insertSubview(destinationView, atIndex: 0)
         
-        guard let superview = destinationView.superview else {
-            sourceViewController.dismissViewControllerAnimated(true, completion: nil)
-            return
-        }
-        superview.insertSubview(sourceView, aboveSubview: destinationView)
-        destinationView.frame = sourceView.frame
-        
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .CurveLinear, animations: { () -> Void in
-            sourceView.frame = CGRectOffset(sourceView.frame, 0, CGRectGetHeight(superview.frame))
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            sourceView.transform = CGAffineTransformMakeScale(0.05, 0.05)
             }) { (finished) -> Void in
+                destinationView.removeFromSuperview()
                 self.sourceViewController.dismissViewControllerAnimated(false, completion: nil)
         }
     }

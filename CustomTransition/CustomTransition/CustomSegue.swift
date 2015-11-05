@@ -13,20 +13,15 @@ class CustomSegue: UIStoryboardSegue {
         let sourceView = sourceViewController.view
         let destinationView = destinationViewController.view
         
-        guard let superview = sourceView.superview else {
-            sourceViewController.presentViewController(destinationViewController, animated: true, completion: nil)
-            return
-        }
-        destinationView.frame = CGRectMake(0.0, CGRectGetHeight(superview.frame), CGRectGetWidth(destinationView.frame), CGRectGetHeight(destinationView.frame))
+        sourceView.addSubview(destinationView)
         
-        superview.insertSubview(destinationView, aboveSubview: sourceView)
-        
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
-            destinationView.frame = CGRectOffset(destinationView.frame, 0.0, -CGRectGetHeight(superview.frame))
-            }) { (finished: Bool) -> Void in
-                self.sourceViewController.presentViewController(self.destinationViewController,
-                    animated: false,
-                    completion: nil)
+        destinationView.transform = CGAffineTransformMakeScale(0.05, 0.05)
+                
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            destinationView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+            }) { (finished) -> Void in
+                destinationView.removeFromSuperview()
+                self.sourceViewController.presentViewController(self.destinationViewController, animated: false, completion: nil)
         }
     }
 }

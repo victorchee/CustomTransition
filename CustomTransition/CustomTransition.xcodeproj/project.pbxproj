@@ -19,8 +19,7 @@
 		BBF7CB971BE9F1FA006E312F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB961BE9F1FA006E312F /* SecondViewController.swift */; };
 		BBF7CB991BE9F47A006E312F /* CustomModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB981BE9F47A006E312F /* CustomModalTransition.swift */; };
 		BBF7CB9B1BE9F7F8006E312F /* CustomDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7CB9A1BE9F7F8006E312F /* CustomDismissTransition.swift */; };
-		F0521AB21BEA29BA00F2C507 /* OneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0521AB11BEA29BA00F2C507 /* OneViewController.swift */; };
-		F0521AB41BEA29CA00F2C507 /* AnotherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0521AB31BEA29CA00F2C507 /* AnotherViewController.swift */; };
+		F0521AB21BEA29BA00F2C507 /* SegueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0521AB11BEA29BA00F2C507 /* SegueViewController.swift */; };
 		F0521AB61BEA2AD300F2C507 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0521AB51BEA2AD300F2C507 /* CustomSegue.swift */; };
 		F0521AB81BEA2D3300F2C507 /* CustomUnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0521AB71BEA2D3300F2C507 /* CustomUnwindSegue.swift */; };
 /* End PBXBuildFile section */
@@ -40,8 +39,7 @@
 		BBF7CB961BE9F1FA006E312F /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		BBF7CB981BE9F47A006E312F /* CustomModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomModalTransition.swift; sourceTree = "<group>"; };
 		BBF7CB9A1BE9F7F8006E312F /* CustomDismissTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDismissTransition.swift; sourceTree = "<group>"; };
-		F0521AB11BEA29BA00F2C507 /* OneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneViewController.swift; sourceTree = "<group>"; };
-		F0521AB31BEA29CA00F2C507 /* AnotherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnotherViewController.swift; sourceTree = "<group>"; };
+		F0521AB11BEA29BA00F2C507 /* SegueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueViewController.swift; sourceTree = "<group>"; };
 		F0521AB51BEA2AD300F2C507 /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		F0521AB71BEA2D3300F2C507 /* CustomUnwindSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUnwindSegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,8 +111,7 @@
 		F0521AB01BEA299600F2C507 /* Segue */ = {
 			isa = PBXGroup;
 			children = (
-				F0521AB11BEA29BA00F2C507 /* OneViewController.swift */,
-				F0521AB31BEA29CA00F2C507 /* AnotherViewController.swift */,
+				F0521AB11BEA29BA00F2C507 /* SegueViewController.swift */,
 				F0521AB51BEA2AD300F2C507 /* CustomSegue.swift */,
 				F0521AB71BEA2D3300F2C507 /* CustomUnwindSegue.swift */,
 			);
@@ -193,7 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBF7CB9B1BE9F7F8006E312F /* CustomDismissTransition.swift in Sources */,
-				F0521AB21BEA29BA00F2C507 /* OneViewController.swift in Sources */,
+				F0521AB21BEA29BA00F2C507 /* SegueViewController.swift in Sources */,
 				BBF7CB8D1BE9D687006E312F /* DetailViewController.swift in Sources */,
 				F0521AB81BEA2D3300F2C507 /* CustomUnwindSegue.swift in Sources */,
 				BBF7CB991BE9F47A006E312F /* CustomModalTransition.swift in Sources */,
@@ -203,7 +200,6 @@
 				BBF7CB951BE9F1EE006E312F /* FirstViewController.swift in Sources */,
 				BBF7CB971BE9F1FA006E312F /* SecondViewController.swift in Sources */,
 				BBF7CB791BE9AAD9006E312F /* AppDelegate.swift in Sources */,
-				F0521AB41BEA29CA00F2C507 /* AnotherViewController.swift in Sources */,
 				BBF7CB8F1BE9D8AE006E312F /* CustomPushTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

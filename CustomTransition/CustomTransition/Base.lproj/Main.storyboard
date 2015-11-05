@@ -181,7 +181,7 @@
         <!--Segue-->
         <scene sceneID="s83-kt-BVt">
             <objects>
-                <viewController id="lJo-YW-lZN" customClass="OneViewController" customModule="CustomTransition" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lJo-YW-lZN" customClass="SegueViewController" customModule="CustomTransition" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aHw-MY-Dm5"/>
                         <viewControllerLayoutGuide type="bottom" id="Bbf-HJ-cPw"/>
@@ -220,10 +220,10 @@
             </objects>
             <point key="canvasLocation" x="1099" y="1108"/>
         </scene>
-        <!--Another View Controller-->
+        <!--View Controller-->
         <scene sceneID="fTF-L0-Hqz">
             <objects>
-                <viewController id="yuv-kU-eB2" customClass="AnotherViewController" customModule="CustomTransition" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yuv-kU-eB2" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E3Z-nI-FkY"/>
                         <viewControllerLayoutGuide type="bottom" id="wHe-ac-mKh"/>
@@ -245,7 +245,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="LOY-V0-gXF" kind="unwind" identifier="UnwindSegue" customClass="CustomUnwindSegue" customModule="CustomTransition" customModuleProvider="target" unwindAction="unwindFromViewController:" id="CNu-44-c7b"/>
+                                    <segue destination="LOY-V0-gXF" kind="unwind" identifier="" customClass="CustomUnwindSegue" customModule="CustomTransition" customModuleProvider="target" unwindAction="unwindFromViewController:" id="CNu-44-c7b"/>
                                 </connections>
                             </button>
                         </subviews>
