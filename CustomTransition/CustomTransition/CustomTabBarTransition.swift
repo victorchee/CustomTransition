@@ -17,41 +17,10 @@ class CustomTabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? CollectionViewController else {
+        guard let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) else {
             return
         }
-        guard let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? DetailViewController else {
-            return
-        }
-        
-        guard let containerView = transitionContext.containerView() else {
-            return
-        }
-        
-        containerView.addSubview(fromViewController.view)
-        let toFrame = transitionContext.finalFrameForViewController(toViewController)
-        var toInitialFrame = toFrame
-        toInitialFrame.origin.y -= CGRectGetHeight(toFrame)
-        
-        var fromFrame = fromViewController.view.frame
-        fromFrame.origin.y = CGRectGetMinY(fromFrame) + CGRectGetHeight(fromFrame)
-        
-        toViewController.view.frame = toInitialFrame
-        
-        UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
-            toViewController.view.frame = toFrame
-            fromViewController.view.frame = fromFrame
-            }) { (finished) -> Void in
-                transitionContext.completeTransition(finished)
-        }
-    }
-    
-    /*
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? CollectionViewController else {
-            return
-        }
-        guard let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? DetailViewController else {
+        guard let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) else {
             return
         }
         
@@ -135,7 +104,6 @@ class CustomTabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
         }
     }
-*/
     
     private func createSnapshot(fromView: UIView, afterUpdate: Bool, location: CGFloat, left: Bool) -> UIView {
         let size = fromView.frame.size
