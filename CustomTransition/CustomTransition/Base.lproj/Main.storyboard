@@ -306,7 +306,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="OPP-Bn-phy">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="y0p-po-BYI" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="y0p-po-BYI" customClass="TabBarController" customModule="CustomTransition" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="WIz-9w-que">
                         <autoresizingMask key="autoresizingMask"/>
