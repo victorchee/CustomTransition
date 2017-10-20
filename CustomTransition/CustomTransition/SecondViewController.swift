@@ -9,7 +9,7 @@
 import UIKit
 
 class SecondViewController: UIViewController {
-    @IBAction func dismiss(sender: UIButton) {
-        (transitioningDelegate as! UIViewController).dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func dismiss(_ sender: UIButton) {
+        (transitioningDelegate as! UIViewController).dismiss(animated: true, completion: nil)
     }
 }

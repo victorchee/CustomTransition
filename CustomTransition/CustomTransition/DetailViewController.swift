@@ -13,31 +13,31 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
     
     private var percentDrivenTransition: UIPercentDrivenInteractiveTransition?
     
-    @IBAction func edgePan(sender: UIScreenEdgePanGestureRecognizer) {
-        let progress = sender.translationInView(view).x / view.bounds.width
-        if sender.state == .Began {
+    @IBAction func edgePan(_ sender: UIScreenEdgePanGestureRecognizer) {
+        let progress = sender.translation(in: view).x / view.bounds.width
+        if sender.state == .began {
             percentDrivenTransition = UIPercentDrivenInteractiveTransition()
-            navigationController?.popViewControllerAnimated(true)
-        } else if sender.state == .Changed {
-            percentDrivenTransition?.updateInteractiveTransition(progress)
-        } else if sender.state == .Cancelled || sender.state == .Ended {
+            navigationController?.popViewController(animated: true)
+        } else if sender.state == .changed {
+            percentDrivenTransition?.update(progress)
+        } else if sender.state == .cancelled || sender.state == .ended {
             if progress > 0.5 {
-                percentDrivenTransition?.finishInteractiveTransition()
+                percentDrivenTransition?.finish()
             } else {
-                percentDrivenTransition?.cancelInteractiveTransition()
+                percentDrivenTransition?.cancel()
             }
             percentDrivenTransition = nil
         }
     }
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.delegate = self
     }
     
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if operation == .Pop {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if operation == .pop {
             return CustomPopTransition()
         } else {
             return nil

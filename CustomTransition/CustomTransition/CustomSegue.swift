@@ -10,18 +10,18 @@ import UIKit
 
 class CustomSegue: UIStoryboardSegue {
     override func perform() {
-        let sourceView = sourceViewController.view
-        let destinationView = destinationViewController.view
+        let sourceView = source.view
+        let destinationView = destination.view
         
-        sourceView.addSubview(destinationView)
+        sourceView?.addSubview(destinationView!)
         
-        destinationView.transform = CGAffineTransformMakeScale(0.05, 0.05)
+        destinationView?.transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
                 
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
-            destinationView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            destinationView?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }) { (finished) -> Void in
-                destinationView.removeFromSuperview()
-                self.sourceViewController.presentViewController(self.destinationViewController, animated: false, completion: nil)
+                destinationView?.removeFromSuperview()
+                self.source.present(self.destination, animated: false, completion: nil)
         }
     }
 }

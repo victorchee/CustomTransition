@@ -12,23 +12,21 @@ class CustomTabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     var folds: Int = 3
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) else {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        guard let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else {
             return
         }
-        guard let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) else {
-            return
-        }
-        
-        guard let containerView = transitionContext.containerView() else {
+        guard let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
             return
         }
         
-        toViewController.view.frame = CGRectOffset(toViewController.view.frame, CGRectGetWidth(toViewController.view.frame), 0)
+        let containerView = transitionContext.containerView
+        
+        toViewController.view.frame = toViewController.view.frame.offsetBy(dx: toViewController.view.frame.width, dy: 0)
         containerView.addSubview(toViewController.view)
         
         var transform = CATransform3DIdentity
@@ -41,44 +39,44 @@ class CustomTabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
         var fromViewFolds = [UIView]()
         var toViewFolds = [UIView]()
         
-        for var i = 0; i < folds; ++i {
+        for i in 0..<folds {
             let offset = CGFloat(i) * foldWidth * 2.0
             
-            let leftFromViewFold = createSnapshot(fromViewController.view, afterUpdate: false, location: offset, left: true)
+            let leftFromViewFold = createSnapshot(fromView: fromViewController.view, afterUpdate: false, location: offset, left: true)
             leftFromViewFold.layer.position = CGPoint(x: offset, y: size.height / 2.0)
             fromViewFolds.append(leftFromViewFold)
             leftFromViewFold.subviews[1].alpha = 0
             
-            let rightFromViewFold = createSnapshot(fromViewController.view, afterUpdate: false, location: offset + foldWidth, left: false)
+            let rightFromViewFold = createSnapshot(fromView: fromViewController.view, afterUpdate: false, location: offset + foldWidth, left: false)
             rightFromViewFold.layer.position = CGPoint(x: offset + foldWidth * 2.0, y: size.height / 2.0)
             fromViewFolds.append(rightFromViewFold)
             rightFromViewFold.subviews[1].alpha = 0
             
-            let leftToViewFold = createSnapshot(fromViewController.view, afterUpdate: true, location: offset, left: true)
+            let leftToViewFold = createSnapshot(fromView: fromViewController.view, afterUpdate: true, location: offset, left: true)
             leftToViewFold.layer.position = CGPoint(x: 0, y: size.height / 2.0)
-            leftToViewFold.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI_2), 0, 1.0, 0)
+            leftToViewFold.layer.transform = CATransform3DMakeRotation(.pi / 2, 0, 1.0, 0)
             toViewFolds.append(leftToViewFold)
             
-            let rightToViewFold = createSnapshot(fromViewController.view, afterUpdate: true, location: offset + foldWidth, left: false)
+            let rightToViewFold = createSnapshot(fromView: fromViewController.view, afterUpdate: true, location: offset + foldWidth, left: false)
             rightToViewFold.layer.position = CGPoint(x: 0, y: size.height / 2.0)
-            rightToViewFold.layer.transform = CATransform3DMakeRotation(-CGFloat(M_PI_2), 0, 1.0, 0)
+            rightToViewFold.layer.transform = CATransform3DMakeRotation(-.pi / 2, 0, 1.0, 0)
             toViewFolds.append(rightToViewFold)
         }
         
-        fromViewController.view.frame = CGRectOffset(fromViewController.view.frame, CGRectGetWidth(fromViewController.view.frame), 0)
+        fromViewController.view.frame = fromViewController.view.frame.offsetBy(dx: fromViewController.view.frame.width, dy: 0)
         
-        UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
-            for var i = 0; i < self.folds; ++i {
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: { () -> Void in
+            for i in 0..<self.folds {
                 let offset = CGFloat(i) * foldWidth * 2.0
                 
                 let leftFromView = fromViewFolds[i * 2]
                 leftFromView.layer.position = CGPoint(x: size.width, y: size.height / 2.0)
-                leftFromView.layer.transform = CATransform3DRotate(transform, CGFloat(M_PI_2), 0, 1.0, 0)
+                leftFromView.layer.transform = CATransform3DRotate(transform, .pi / 2, 0, 1.0, 0)
                 leftFromView.subviews[1].alpha = 1.0
                 
                 let rightFromView = fromViewFolds[i * 2 + 1]
                 rightFromView.layer.position = CGPoint(x: size.width, y: size.height / 2.0)
-                rightFromView.layer.transform = CATransform3DRotate(transform, -CGFloat(M_PI_2), 0, 1.0, 0)
+                rightFromView.layer.transform = CATransform3DRotate(transform, -.pi / 2, 0, 1.0, 0)
                 rightFromView.subviews[1].alpha = 1.0
                 
                 let leftToView = toViewFolds[i * 2]
@@ -101,7 +99,7 @@ class CustomTabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
                 toViewController.view.frame = containerView.bounds
                 fromViewController.view.frame = containerView.bounds
                 
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
     
@@ -118,15 +116,15 @@ class CustomTabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
             snapshotView = UIView(frame: CGRect(x: 0, y: 0, width: foldWidth, height: size.height))
             snapshotView.backgroundColor = fromView.backgroundColor
             let snapshotRect = CGRect(x: location, y: 0, width: foldWidth, height: size.height)
-            let snapshotView2 = fromView.resizableSnapshotViewFromRect(snapshotRect, afterScreenUpdates: afterUpdate, withCapInsets: UIEdgeInsets())
-            snapshotView.addSubview(snapshotView2)
+            let snapshotView2 = fromView.resizableSnapshotView(from: snapshotRect, afterScreenUpdates: afterUpdate, withCapInsets: UIEdgeInsets())
+            snapshotView.addSubview(snapshotView2!)
         } else {
             // create a regular snapshot
             let snapshotRect = CGRect(x: location, y: 0, width: foldWidth, height: size.height)
-            snapshotView = fromView.resizableSnapshotViewFromRect(snapshotRect, afterScreenUpdates: afterUpdate, withCapInsets: UIEdgeInsets())
+            snapshotView = fromView.resizableSnapshotView(from: snapshotRect, afterScreenUpdates: afterUpdate, withCapInsets: UIEdgeInsets())!
         }
         
-        let snapshotWithShadowView = addShadow(snapshotView, reverse: left)
+        let snapshotWithShadowView = addShadow(view: snapshotView, reverse: left)
         
         containerView?.addSubview(snapshotWithShadowView)
         snapshotWithShadowView.layer.anchorPoint = CGPoint(x: left ? 0 : 1.0, y: 0.5)
@@ -140,10 +138,10 @@ class CustomTabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = shadowView.bounds
-        gradientLayer.colors = [UIColor(white: 0, alpha: 0).CGColor, UIColor(white: 0, alpha: 1.0).CGColor]
+        gradientLayer.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 1.0).cgColor]
         gradientLayer.startPoint = CGPoint(x: reverse ? 0 : 1.0, y: reverse ? 0.2 : 0)
         gradientLayer.endPoint = CGPoint(x: reverse ? 1.0 : 0, y: reverse ? 0 : 1.0)
-        shadowView.layer.insertSublayer(gradientLayer, atIndex: 1)
+        shadowView.layer.insertSublayer(gradientLayer, at: 1)
         
         view.frame = view.bounds
         viewWithShadow.addSubview(view)

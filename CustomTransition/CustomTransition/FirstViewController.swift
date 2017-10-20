@@ -15,40 +15,40 @@ class FirstViewController: UIViewController, UIViewControllerTransitioningDelega
         super.viewDidLoad()
         transitioningDelegate = self
         
-        let edgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "edgePan:")
-        edgePanGesture.edges = UIRectEdge.Right
+        let edgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(edgePan(_:)))
+        edgePanGesture.edges = UIRectEdge.right
         view.addGestureRecognizer(edgePanGesture)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? SecondViewController {
-            let edgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "edgePan:")
-            edgePanGesture.edges = UIRectEdge.Left
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? SecondViewController {
+            let edgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(edgePan(_:)))
+            edgePanGesture.edges = UIRectEdge.left
             destination.view.addGestureRecognizer(edgePanGesture)
             
             destination.transitioningDelegate = self
         }
         
-        super.prepareForSegue(segue, sender: sender)
+        super.prepare(for: segue, sender: sender)
     }
     
-    func edgePan(sender: UIScreenEdgePanGestureRecognizer) {
-        let window = UIApplication.sharedApplication().keyWindow!
-        let progress = abs(sender.translationInView(window).x / window.bounds.width)
-        if sender.state == .Began {
+    @objc func edgePan(_ sender: UIScreenEdgePanGestureRecognizer) {
+        let window = UIApplication.shared.keyWindow!
+        let progress = abs(sender.translation(in: window).x / window.bounds.width)
+        if sender.state == .began {
             percentDrivenTransition = UIPercentDrivenInteractiveTransition()
-            if sender.edges == .Right {
-                performSegueWithIdentifier("Modal", sender: sender)
+            if sender.edges == .right {
+                performSegue(withIdentifier: "Modal", sender: sender)
             } else {
-                dismissViewControllerAnimated(true, completion: nil)
+                dismiss(animated: true, completion: nil)
             }
-        } else if sender.state == .Changed {
-            percentDrivenTransition?.updateInteractiveTransition(progress)
-        } else if sender.state == .Cancelled || sender.state == .Ended {
+        } else if sender.state == .changed {
+            percentDrivenTransition?.update(progress)
+        } else if sender.state == .cancelled || sender.state == .ended {
             if progress > 0.5 {
-                percentDrivenTransition?.finishInteractiveTransition()
+                percentDrivenTransition?.finish()
             } else {
-                percentDrivenTransition?.cancelInteractiveTransition()
+                percentDrivenTransition?.cancel()
             }
             percentDrivenTransition = nil
         }
@@ -62,11 +62,11 @@ class FirstViewController: UIViewController, UIViewControllerTransitioningDelega
         return CustomDismissTransition()
     }
     
-    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return percentDrivenTransition
     }
     
-    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return percentDrivenTransition
     }
 }

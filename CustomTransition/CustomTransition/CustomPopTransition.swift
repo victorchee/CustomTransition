@@ -9,43 +9,41 @@
 import UIKit
 
 class CustomPopTransition: NSObject, UIViewControllerAnimatedTransitioning {
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? DetailViewController else {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        guard let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as? DetailViewController else {
             return
         }
-        guard let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? CollectionViewController else {
+        guard let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as? CollectionViewController else {
             return
         }
-        guard let containerView = transitionContext.containerView() else {
-            return
-        }
+        let containerView = transitionContext.containerView
         
-        let snapshotView = fromViewController.label.snapshotViewAfterScreenUpdates(false)
-        snapshotView.frame = containerView.convertRect(fromViewController.label.frame, fromView: fromViewController.view)
-        fromViewController.label.hidden = true
+        let snapshotView = fromViewController.label.snapshotView(afterScreenUpdates: false)
+        snapshotView?.frame = containerView.convert(fromViewController.label.frame, from: fromViewController.view)
+        fromViewController.label.isHidden = true
         
-        toViewController.view.frame = transitionContext.finalFrameForViewController(toViewController)
+        toViewController.view.frame = transitionContext.finalFrame(for: toViewController)
         guard let selectedCell = toViewController.selectedCell else {
             return
         }
-        selectedCell.label.hidden = true
+        selectedCell.label.isHidden = true
         
         containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
-        containerView.addSubview(snapshotView)
+        containerView.addSubview(snapshotView!)
         
-        UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
-            snapshotView.frame = containerView.convertRect(selectedCell.label.frame, fromView: selectedCell)
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: { () -> Void in
+            snapshotView?.frame = containerView.convert(selectedCell.label.frame, from: selectedCell)
             fromViewController.view.alpha = 0
             }) { (finished) -> Void in
-                selectedCell.label.hidden = false
-                snapshotView.removeFromSuperview()
-                fromViewController.label.hidden = false
+                selectedCell.label.isHidden = false
+                snapshotView?.removeFromSuperview()
+                fromViewController.label.isHidden = false
                 
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
 }

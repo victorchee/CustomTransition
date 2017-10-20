@@ -9,5 +9,5 @@
 import UIKit
 
 class SegueViewController: UIViewController {
-    @IBAction func unwindFromViewController(sender: UIStoryboardSegue) {}
+    @IBAction func unwindFromViewController(_ sender: UIStoryboardSegue) {}
 }

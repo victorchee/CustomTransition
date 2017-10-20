@@ -10,15 +10,15 @@ import UIKit
 
 class CustomUnwindSegue: UIStoryboardSegue {
     override func perform() {
-        let sourceView = sourceViewController.view
-        let destinationView = destinationViewController.view
-        sourceView.superview?.insertSubview(destinationView, atIndex: 0)
+        let sourceView = source.view
+        let destinationView = destination.view
+        sourceView?.superview?.insertSubview(destinationView!, at: 0)
         
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
-            sourceView.transform = CGAffineTransformMakeScale(0.05, 0.05)
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            sourceView?.transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
             }) { (finished) -> Void in
-                destinationView.removeFromSuperview()
-                self.sourceViewController.dismissViewControllerAnimated(false, completion: nil)
+                destinationView?.removeFromSuperview()
+                self.source.dismiss(animated: false, completion: nil)
         }
     }
 }
